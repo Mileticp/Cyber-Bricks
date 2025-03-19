@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brick Breaker Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="application/javascript">
+        var x = 150, y = 150;  
+        var dx = 2, dy = 4;    
+        var r = 10;           
+        var WIDTH, HEIGHT;
+        var paddlex, paddleh = 10, paddlew = 75;
+        var rightDown = false, leftDown = false; 
+        var ctx;
+        var gameRunning = true;
+
+        function init() {
+            var canvas = $("#canvas")[0];
+            ctx = canvas.getContext("2d");
+            WIDTH = $("#canvas").width();
+            HEIGHT = $("#canvas").height();
+
+            init_paddle();
+            $(document).keydown(onKeyDown);
+            $(document).keyup(onKeyUp);
+            
+            requestAnimationFrame(draw);
+        }
+
+        function init_paddle() {
+            paddlex = (WIDTH - paddlew) / 2; 
+        }
+
+        function onKeyDown(evt) {
+            if (evt.keyCode == 39) rightDown = true;  
+            else if (evt.keyCode == 37) leftDown = true;  
+        }
+
+        function onKeyUp(evt) {
+            if (evt.keyCode == 39) rightDown = false;
+            else if (evt.keyCode == 37) leftDown = false;
+        }
+
+        function circle(x, y, r) {
+            ctx.beginPath();
+            ctx.arc(x, y, r, 0, Math.PI * 2, true);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function rect(x, y, w, h) {
+            ctx.beginPath();
+            ctx.rect(x, y, w, h);
+            ctx.closePath();
+            ctx.fill();
+        }
+
+        function clear() {
+            ctx.clearRect(0, 0, WIDTH, HEIGHT);
+        }
+
+        function draw() {
+            if (!gameRunning) return;
+
+            clear();
+            ctx.fillStyle = "blue";  
+            circle(x, y, r);
+
+            // Move Paddle
+            if (rightDown && paddlex + paddlew < WIDTH) paddlex += 5;
+            if (leftDown && paddlex > 0) paddlex -= 5;
+
+            ctx.fillStyle = "black";  
+            rect(paddlex, HEIGHT - paddleh, paddlew, paddleh); 
+
+           
+            x += dx;
+            y += dy;
+
+            
+            if (x + r > WIDTH || x - r < 0) dx = -dx;
+            if (y - r < 0) dy = -dy;
+
+            
+            if (y + r > HEIGHT - paddleh) {
+                if (x > paddlex && x < paddlex + paddlew) {
+                    dy = -dy; 
+                } else {
+                    gameRunning = false; 
+                    alert("Game Over!");
+                    return;
+                }
+            }
+
+            requestAnimationFrame(draw);
+        }
+
+        $(document).ready(init);
+    </script>
+</head>
+<body>
+    <canvas id="canvas" width="300" height="300" style="border:1px solid black;"></canvas>
+</body>
+</html>
