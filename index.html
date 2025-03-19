@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Brick Breaker Game</title>
+    <title>Cyberbricks</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script type="application/javascript">
         var x = 150, y = 150;  
@@ -13,7 +13,7 @@
         var paddlex, paddleh = 10, paddlew = 75;
         var rightDown = false, leftDown = false; 
         var ctx;
-        var gameRunning = true;
+        var laufa = true;
 
         function init() {
             var canvas = $("#canvas")[0];
@@ -61,13 +61,12 @@
         }
 
         function draw() {
-            if (!gameRunning) return;
+            if (!laufa) return;
 
             clear();
             ctx.fillStyle = "blue";  
             circle(x, y, r);
 
-            // Move Paddle
             if (rightDown && paddlex + paddlew < WIDTH) paddlex += 5;
             if (leftDown && paddlex > 0) paddlex -= 5;
 
@@ -87,8 +86,7 @@
                 if (x > paddlex && x < paddlex + paddlew) {
                     dy = -dy; 
                 } else {
-                    gameRunning = false; 
-                    alert("Game Over!");
+                    laufa = false; 
                     return;
                 }
             }
