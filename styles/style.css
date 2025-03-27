@@ -2,3 +2,11 @@
             border: 5px solid black; 
             background-color: lightgray; 
         }
+        #canvas{
+            padding-left: 0;
+            padding-right:0;
+            margin: auto;
+            display: block;
+            margin-top: 150px;
+
+        }

@@ -9,6 +9,9 @@
         var dy = 4;
         var ctx;
         var canvas;
+        var paddlex;
+        var paddleh;
+        var paddlew;
 
         function init() {
             canvas = document.getElementById('canvas');
@@ -17,7 +20,7 @@
         }
 
         function draw() {
-            ctx.clearRect(0, 0, 300, 300); //cleara usak frame
+            ctx.clearRect(0, 0, 500, 500); //clear
             ctx.beginPath();
             ctx.arc(x, y, 10, 0, Math.PI * 2, true);
             ctx.closePath();
@@ -35,9 +38,14 @@
                 dy = -dy;
             }
         }
+        function init_paddle() {
+        paddlex = WIDTH / 2;
+        paddleh = 10;
+        paddlew = 75;
+        }
     </script>
 </head>
 <body onload="init()">
-    <canvas id="canvas" width="300" height="300"></canvas>
+    <canvas id="canvas" width="500" height="500"></canvas>
 </body>
 </html>
