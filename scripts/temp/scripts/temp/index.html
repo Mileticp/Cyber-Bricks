@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paddle Game</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+        var canvas, ctx;
+        var x = 150, y = 150;
+        var dx = 2, dy = 4;
+        var paddlex, paddleh = 10, paddlew = 75;
+        var rightPressed = false, leftPressed = false;
+        var intervalId;
+
+        function init() {
+            canvas = document.getElementById('canvas');
+            ctx = canvas.getContext('2d');
+            paddlex = (canvas.width - paddlew) / 2;
+            document.addEventListener("keydown", keyDownHandler);
+            document.addEventListener("keyup", keyUpHandler);
+            intervalId = setInterval(draw, 10);
+        }
+
+        function keyDownHandler(e) {
+            if (e.key === "ArrowRight") rightPressed = true;
+            if (e.key === "ArrowLeft") leftPressed = true;
+        }
+
+        function keyUpHandler(e) {
+            if (e.key === "ArrowRight") rightPressed = false;
+            if (e.key === "ArrowLeft") leftPressed = false;
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Draw Ball
+            ctx.beginPath();
+            ctx.arc(x, y, 10, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.closePath();
+
+            // Draw Paddle
+            ctx.fillStyle = "black";
+            ctx.fillRect(paddlex, canvas.height - paddleh - 10, paddlew, paddleh);
+
+
+            if (rightPressed && paddlex < canvas.width - paddlew) paddlex += 5;
+            if (leftPressed && paddlex > 0) paddlex -= 5;
+
+
+            if (x + dx > canvas.width - 10 || x + dx < 10) dx = -dx;
+            if (y + dy < 10) dy = -dy;
+            else if (y + dy > canvas.height - paddleh - 10) {
+                if (x > paddlex && x < paddlex + paddlew) {
+                    dy = -dy;
+                } else {
+                    clearInterval(intervalId);
+                    alert("Game Over!");
+                }
+            }
+
+            // poz
+            x += dx;
+            y += dy;
+        }
+    </script>
+</head>
+<body onload="init()">
+    <canvas id="canvas" width="400" height="300"></canvas>
+</body>
+</html>
