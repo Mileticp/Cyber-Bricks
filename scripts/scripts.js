@@ -177,7 +177,7 @@ function checkBrickCollision() {
                         title: "Zmagu!",
                         text: "Zmagu si!",
                         icon: "success"
-                    }).then(() => location.reload());
+                    })
                 }
                 
                 return;
