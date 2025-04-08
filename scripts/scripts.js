@@ -28,9 +28,9 @@ var PADDING = 1;
 var brickCount;    
 var intervalId;    
 var opeka = new Image();
-opeka.src = "brick.png";
+opeka.src = "images/brick.png";
 var paddleImg = new Image();
-paddleImg.src = "paddle.png";
+paddleImg.src = "images/paddle.png";
 
 
 function init() {
@@ -171,7 +171,7 @@ function checkBrickCollision() {
                     dy = -dy;
                 }
                 
-                if (brickCount === 0) {
+                if (brickCount == 0) {
                     clearInterval(intervalId);
                     Swal.fire({
                         title: "Zmagu!",
@@ -194,7 +194,7 @@ function draw() {
     
     ctx.beginPath();
     ctx.arc(x, y, 10, 0, Math.PI * 2);
-    ctx.fillStyle = "#000";
+    ctx.fillStyle = "black";
     ctx.fill();
     ctx.closePath();
     
@@ -224,8 +224,9 @@ function draw() {
             title: "Zgebu!",
             text: "Zgebu si!",
             icon: "error"
-        }).
-        return;
+        }).then(function() {
+            window.location.reload(); 
+          });
     }
 }
 
