@@ -7,8 +7,8 @@ var ctx;
 var canvas;  
 
 var paddlex;       
-var paddleh = 10;  //thickness
-var paddlew = 85;  //width
+var paddleh = 10;  //debelina
+var paddlew = 85;  //sirina
 
 //input
 var rightPressed = false; 
@@ -33,12 +33,18 @@ opeka.src = "images/brick.png";
 var paddleImg = new Image();
 paddleImg.src = "images/paddle.png";
 
+var score = 0;
+var startTime;
+var elapsed = 0;
+
+
 
 function init() {
     canvas = document.getElementById('canvas');
     ctx = canvas.getContext('2d');
     document.addEventListener("keydown", keyDownHandler, false);
     document.addEventListener("keyup", keyUpHandler, false);
+    startTime = Date.now();
     intervalId = setInterval(draw, 10);
     paddlex = (WIDTH - paddlew) / 2;
     initbricks();
@@ -112,19 +118,15 @@ function drawBricks() {
 
 
 function checkPaddleCollision() {
-    // Check if ball is at paddle's vertical position (with 10px radius consideration)
+    // Check ce je zoga na paddli (vertikala)
     if (y + 10 >= HEIGHT - paddleh) {
-        // Check if ball is within paddle's horizontal range
+        // Check ce je zoga na paddli (vodoravna)
         if (x > paddlex && x < paddlex + paddlew) {
-            // Calculate relative impact point (-0.5 to 0.5 from center)
-            let relativeIntersectX = (x - (paddlex + paddlew/2)) / (paddlew/2);
-            
-            // Set new horizontal velocity based on impact point (more control)
-            // The multiplier (8) determines how sharp the angles can be
-            dx = 8 * relativeIntersectX;
-            
-            // Always reverse vertical direction
-            dy = -Math.abs(dy); // Ensure ball always goes up
+            //odboj glede na paddle
+            let paddleodboj2 = (x - (paddlex + paddlew/2)) / (paddlew/2);
+            dx = 8 * paddleodboj2;
+            // odboj s paddla
+            dy = -Math.abs(dy);
             
             return true;
         }
@@ -132,10 +134,7 @@ function checkPaddleCollision() {
     return false;
 }
 
-/**
- * FUNCTION: Checks for collision between ball and bricks.
- * Handles brick destruction and ball bouncing.
- */
+//odboj bricks
 function checkBrickCollision() {
     for (let i = 0; i < NROWS; i++) {
         for (let j = 0; j < NCOLS; j++) {
@@ -151,6 +150,7 @@ function checkBrickCollision() {
                 
                 bricks[i][j] = 0;
                 brickCount--;
+                score++;
                 
                 let ballCenterX = x;
                 let ballCenterY = y;
@@ -194,12 +194,14 @@ function draw() {
     ctx.clearRect(0, 0, WIDTH, HEIGHT);
     drawPaddle();
     drawBricks();
+    drawScore();
     
     ctx.beginPath();
     ctx.arc(x, y, 10, 0, Math.PI * 2);
     ctx.fillStyle = "black";
     ctx.fill();
     ctx.closePath();
+
     
     if (rightPressed && paddlex < WIDTH - paddlew) { 
         paddlex += 7;
@@ -225,7 +227,7 @@ function draw() {
         clearInterval(intervalId);
         Swal.fire({
             title: "Zgebu!",
-            text: "Zgebu si!",
+            html: `Zgebu!<br><br>Score: ${score}<br>Time: ${elapsed}s`,
             icon: "error"
         }).then(function() {
             window.location.reload(); 
@@ -234,9 +236,9 @@ function draw() {
 }
 
 function drawScore() {
-    ctx.font = "16px Arial";
-    ctx.fillStyle = "#0095DD";
-    ctx.fillText("Score: "+score, 8, 20);
+    elapsed = Math.floor((Date.now() - startTime)/1000);
+    document.getElementById('timer').textContent = "Time: " + elapsed + "s | Score: " + score;
+
 } 
 
 window.onload = init;
