@@ -28,6 +28,7 @@ var PADDING = 1;
 var brickCount;    
 var intervalId;    
 var opeka = new Image();
+var score = 0;
 opeka.src = "images/brick.png";
 var paddleImg = new Image();
 paddleImg.src = "images/paddle.png";
@@ -177,7 +178,9 @@ function checkBrickCollision() {
                         title: "Zmagu!",
                         text: "Zmagu si!",
                         icon: "success"
-                    })
+                    }).then(function() {
+                        window.location.reload(); 
+                      });
                 }
                 
                 return;
@@ -230,4 +233,15 @@ function draw() {
     }
 }
 
+function drawScore() {
+    ctx.font = "16px Arial";
+    ctx.fillStyle = "#0095DD";
+    ctx.fillText("Score: "+score, 8, 20);
+} 
+
 window.onload = init;
+
+
+
+
+
