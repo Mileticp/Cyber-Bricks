@@ -27,11 +27,17 @@ var BRICKHEIGHT = 15;
 var PADDING = 1;   
 var brickCount;    
 var intervalId;    
-var opeka = new Image();
 var score = 0;
-opeka.src = "images/brick.png";
 var paddleImg = new Image();
 paddleImg.src = "images/paddle.png";
+
+var opeke = [];
+opeke[0] = new Image();  
+opeke[0].src = "images/brick.png";
+opeke[1] = new Image();  
+opeke[1].src = "images/brick_damaged1.png";
+opeke[2] = new Image();  
+opeke[2].src = "images/brick_damaged2.png";
 
 var score = 0;
 var startTime;
@@ -58,7 +64,10 @@ function initbricks() {
     for (let i = 0; i < NROWS; i++) {
         bricks[i] = new Array(NCOLS);
         for (let j = 0; j < NCOLS; j++) {
-            bricks[i][j] = 1;
+            bricks[i][j] = {
+                hits: 0,
+                broken: false
+            };
         }
     }
 }
@@ -92,9 +101,12 @@ function drawPaddle() {
 function drawBricks() {
     for (let i = 0; i < NROWS; i++) {
         for (let j = 0; j < NCOLS; j++) {
-            if (bricks[i][j] == 1) {
+            let brick = bricks[i][j];
+            if (!brick.broken) {
+                let hitCount = bricks[i][j].hits;
+                let imgIndex = Math.min(hitCount, 2);
                 ctx.beginPath();
-                ctx.drawImage(opeka,
+                ctx.drawImage(opeke[imgIndex],
                     (j * (BRICKWIDTH + PADDING)) + PADDING,
                     (i * (BRICKHEIGHT + PADDING)) + PADDING,
                     BRICKWIDTH,
@@ -126,7 +138,7 @@ function checkPaddleCollision() {
             let paddleodboj2 = (x - (paddlex + paddlew/2)) / (paddlew/2);
             dx = 8 * paddleodboj2;
             // odboj s paddla
-            dy = -Math.abs(dy);
+            dy = -dy;
             
             return true;
         }
@@ -138,7 +150,8 @@ function checkPaddleCollision() {
 function checkBrickCollision() {
     for (let i = 0; i < NROWS; i++) {
         for (let j = 0; j < NCOLS; j++) {
-            if (bricks[i][j] !== 1) continue;
+            let brick = bricks[i][j];
+            if (brick.broken) continue;
             
             let brickX = j * (BRICKWIDTH + PADDING) + PADDING;
             let brickY = i * (BRICKHEIGHT + PADDING) + PADDING;
@@ -148,10 +161,15 @@ function checkBrickCollision() {
             if (x + 10 > brickX && x - 10 < brickRight &&
                 y + 10 > brickY && y - 10 < brickBottom) {
                 
-                bricks[i][j] = 0;
-                brickCount--;
-                score++;
-                
+                    brick.hits++;
+                    score += 10;
+
+                    if (brick.hits >= 3) {
+                        brick.broken = true;
+                        brickCount--;
+                        score+=20;
+                    }
+                    
                 let ballCenterX = x;
                 let ballCenterY = y;
                 let brickCenterX = brickX + BRICKWIDTH / 2;
@@ -183,7 +201,6 @@ function checkBrickCollision() {
                       });
                 }
                 
-                return;
             }
         }
     }
