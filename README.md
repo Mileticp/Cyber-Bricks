@@ -1,7 +1,7 @@
-Cyber-Bricks: A Retro Brick Breaker Game
+<h1>Cyber-Bricks: A Retro Brick Breaker Game</h1>
 A modern twist on the classic Breakout arcade game, built with HTML5 Canvas and JavaScript.
 
-🎮 Features
+<h2>🎮 Features</h2>
 Retro aesthetics: Pixel-style graphics and vibrant colors.
 
 Dynamic gameplay:
@@ -14,7 +14,7 @@ Score & timer: Tracks your progress and completion time.
 
 Responsive controls: Move the paddle with arrow keys (←/→).
 
-🚀 How to Play
+<h2>🚀 How to Play</h2>
 Clone the repo or download the files.
 
 Open index.html in a browser.
@@ -23,7 +23,7 @@ Use the left/right arrow keys to move the paddle and keep the ball in play!
 
 Break all bricks to win.
 
-🛠️ Code Overview
+<h2>🛠️ Code Overview</h2>
 JavaScript: Canvas API for rendering.
 
 Key mechanics:
