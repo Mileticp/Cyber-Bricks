@@ -104,7 +104,7 @@ function drawBricks() {
             let brick = bricks[i][j];
             if (!brick.broken) {
                 let hitCount = bricks[i][j].hits;
-                let imgIndex = Math.min(hitCount, 2);
+                let imgIndex = hitCount;
                 ctx.beginPath();
                 ctx.drawImage(opeke[imgIndex],
                     (j * (BRICKWIDTH + PADDING)) + PADDING,
@@ -253,7 +253,7 @@ function draw() {
 }
 
 function drawScore() {
-    elapsed = Math.floor((Date.now() - startTime)/1000);
+    elapsed = Math.round((Date.now() - startTime)/1000);
     document.getElementById('timer').textContent = "Time: " + elapsed + "s | Score: " + score;
 
 } 
