@@ -42,6 +42,7 @@ opeke[2].src = "images/brick_damaged2.png";
 var score = 0;
 var startTime;
 var elapsed = 0;
+var lives = 3;
 
 
 
@@ -54,6 +55,12 @@ function init() {
     intervalId = setInterval(draw, 10);
     paddlex = (WIDTH - paddlew) / 2;
     initbricks();
+    updateLives();
+}
+
+// Add this new function to update lives display
+function updateLives() {
+    document.getElementById('lives').textContent = 'Lives: ' + '❤️'.repeat(lives);
 }
 
 
@@ -241,14 +248,25 @@ function draw() {
     checkBrickCollision();
     
     if (y + 10 >= HEIGHT) {
-        clearInterval(intervalId);
-        Swal.fire({
-            title: "Zgebu!",
-            html: `Zgebu!<br><br>Score: ${score}<br>Time: ${elapsed}s`,
-            icon: "error"
-        }).then(function() {
-            window.location.reload(); 
-          });
+        lives--;
+        updateLives();
+        
+        if (lives <= 0) {
+            clearInterval(intervalId);
+            Swal.fire({
+                title: "Game Over!",
+                html: `Game Over!<br><br>Score: ${score}<br>Time: ${elapsed}s`,
+                icon: "error"
+            }).then(function() {
+                window.location.reload(); 
+            });
+        } else {
+            x = 150;
+            y = 150;
+            dx = 2;
+            dy = 4;
+            paddlex = (WIDTH - paddlew) / 2;
+        }
     }
 }
 
