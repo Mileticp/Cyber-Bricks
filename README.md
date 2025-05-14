@@ -1,36 +1,42 @@
+# 🎲 Igralne Kocke
 
-<h1>Cyber-Bricks: A Retro Brick Breaker Game</h1>
-A modern twist on the classic Breakout arcade game, built with HTML5 Canvas and JavaScript.
+Preprosta spletna igra za 2-3 igralce s samodejnim metanjem kock in razvrščanjem rezultatov.
 
-<h2>🎮 Features</h2>
-Retro aesthetics: Pixel-style graphics and vibrant colors.
+## ✨ Značilnosti
 
-Dynamic gameplay:
+- **Vnos igralcev**
+  - Možnost vnosa do 3 igralcev (ime, priimek, naslov)
+  - Preverjanje veljavnosti vnosa (samo črke za ime in priimek)
 
-Ball physics with paddle-controlled rebounds.
+- **Igralna mehanika**
+  - Samodejno metanje kock (3 kocke na igralca)
+  - Avtomatski izračun točk (vsota vrednosti kock)
+  - Razvrstitev igralcev s prikazom na podelitvi nagrad
 
-Bricks degrade visually with each hit (3 hits to break).
+- **Vizualni efekti**
+  - Zlati/srebrni/bronasti dizajn za zmagovalce
+  - Samodejni ponovni zagon igre po 10 sekundah
 
-Score & timer: Tracks your progress and completion time.
+## 🛠️ Tehnologije
 
-Responsive controls: Move the paddle with arrow keys (←/→).
+- **Strežniška stran**: PHP (igralna logika, seje)
+- **Uporabniški vmesnik**: HTML5, CSS3 
+- **Dinamika**: JavaScript (odštevanje časa)
 
-<h2>🚀 How to Play</h2>
-Clone the repo or download the files.
+## 🚀 Namestitev
 
-Open index.html in a browser.
+1. Prenesite datoteke na PHP strežnik
+2. Odprite `index.php` v brskalniku
+3. Vnesite podatke igralcev in začnite igro
 
-Use the left/right arrow keys to move the paddle and keep the ball in play!
+## 📜 Pravila igre
 
-Break all bricks to win.
+1. Vsak igralec vrže 3 kocke
+2. Točke so vsota vseh treh metov
+3. Igralec z največ točkami zmaga
 
-<h2>🛠️ Code Overview</h2>
-JavaScript: Canvas API for rendering.
+## 🌟 Posebne funkcije
 
-Key mechanics:
-
-Collision detection (bricks, paddle, walls).
-
-Brick damage states (via hits and broken properties).
-
-Win/lose conditions with SweetAlert popups.
+- Podium z nagradami (🥇, 🥈, 🥉)
+- Barvno označevanje zmagovalcev
+- Grafični prikaz metov kock
