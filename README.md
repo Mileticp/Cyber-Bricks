@@ -1,42 +1,42 @@
-# 🎲 Igralne Kocke
+# Cyber Bricks 🚀
 
-Preprosta spletna igra za 2-3 igralce s samodejnim metanjem kock in razvrščanjem rezultatov.
+A modern twist on the classic Brick Breaker game with cyberpunk aesthetics and addictive gameplay.
 
-## ✨ Značilnosti
+![Cyber Bricks Screenshot](screenshot.png)  
+*Replace with an actual screenshot of your game*
 
-- **Vnos igralcev**
-  - Možnost vnosa do 3 igralcev (ime, priimek, naslov)
-  - Preverjanje veljavnosti vnosa (samo črke za ime in priimek)
+## Play Now 🎮
 
-- **Igralna mehanika**
-  - Samodejno metanje kock (3 kocke na igralca)
-  - Avtomatski izračun točk (vsota vrednosti kock)
-  - Razvrstitev igralcev s prikazom na podelitvi nagrad
+[Click here to play Cyber Bricks!](https://mileticp.github.io/Cyber-Bricks/)
 
-- **Vizualni efekti**
-  - Zlati/srebrni/bronasti dizajn za zmagovalce
-  - Samodejni ponovni zagon igre po 10 sekundah
+## Features ✨
 
-## 🛠️ Tehnologije
+- 🕹️ Classic Brick Breaker mechanics with smooth controls
+- 🌆 Cyberpunk-inspired visual design
+- 🎵 Retro-futuristic sound effects
+- 📈 Progressive difficulty system
+- 🏆 Score tracking and high score system
+- 📱 Responsive design for desktop and mobile play
 
-- **Strežniška stran**: PHP (igralna logika, seje)
-- **Uporabniški vmesnik**: HTML5, CSS3 
-- **Dinamika**: JavaScript (odštevanje časa)
+## Technologies Used 💻
 
-## 🚀 Namestitev
+- HTML5 Canvas
+- JavaScript (ES6)
+- CSS3
+- Web Audio API
 
-1. Prenesite datoteke na PHP strežnik
-2. Odprite `index.php` v brskalniku
-3. Vnesite podatke igralcev in začnite igro
+## How to Play 🕹️
 
-## 📜 Pravila igre
+1. Use your mouse or touchpad to move the paddle left and right
+2. Bounce the ball to break all the bricks
+3. Don't let the ball fall below your paddle!
+4. Clear all bricks to advance to the next level
+5. Beat your high score and challenge your friends
 
-1. Vsak igralec vrže 3 kocke
-2. Točke so vsota vseh treh metov
-3. Igralec z največ točkami zmaga
+## Development 🛠️
 
-## 🌟 Posebne funkcije
+To run locally:
 
-- Podium z nagradami (🥇, 🥈, 🥉)
-- Barvno označevanje zmagovalcev
-- Grafični prikaz metov kock
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/mileticp/Cyber-Bricks.git
