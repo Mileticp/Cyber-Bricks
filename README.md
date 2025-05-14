@@ -2,9 +2,6 @@
 
 A modern twist on the classic Brick Breaker game with cyberpunk aesthetics and addictive gameplay.
 
-![Cyber Bricks Screenshot](screenshot.png)  
-*Replace with an actual screenshot of your game*
-
 ## Play Now 🎮
 
 [Click here to play Cyber Bricks!](https://mileticp.github.io/Cyber-Bricks/)
@@ -13,7 +10,6 @@ A modern twist on the classic Brick Breaker game with cyberpunk aesthetics and a
 
 - 🕹️ Classic Brick Breaker mechanics with smooth controls
 - 🌆 Cyberpunk-inspired visual design
-- 🎵 Retro-futuristic sound effects
 - 📈 Progressive difficulty system
 - 🏆 Score tracking and high score system
 - 📱 Responsive design for desktop and mobile play
@@ -23,7 +19,6 @@ A modern twist on the classic Brick Breaker game with cyberpunk aesthetics and a
 - HTML5 Canvas
 - JavaScript (ES6)
 - CSS3
-- Web Audio API
 
 ## How to Play 🕹️
 
@@ -33,10 +28,4 @@ A modern twist on the classic Brick Breaker game with cyberpunk aesthetics and a
 4. Clear all bricks to advance to the next level
 5. Beat your high score and challenge your friends
 
-## Development 🛠️
 
-To run locally:
-
-1. Clone this repository:
-   ```bash
-   git clone https://github.com/mileticp/Cyber-Bricks.git
